@@ -4,24 +4,33 @@
 # @Author  :    Xinyao Qian
 # @Description: 
 """
-# import Vertex below....
+from Graph import Graph
 from Vertex import Vertex
 
-# import Graph below...
-from Graph import Graph
+railway = Graph(directed=True)
 
-# Make the Graph instance here
-railway = Graph()
+callan = Vertex('callan')
+peel = Vertex('peel')
+ulfstead = Vertex('ulfstead')
+harwick = Vertex('harwick')
 
-# Make the Vertex instance here
-station_one = Vertex("Ballahoo")
-station_two = Vertex("Penn")
+railway.add_vertex(callan)
+railway.add_vertex(peel)
+railway.add_vertex(harwick)
+railway.add_vertex(ulfstead)
 
-# Call .add_vertex() here
-railway.add_vertex(station_one)
-railway.add_vertex(station_two)
+railway.add_edge(peel, harwick)
+railway.add_edge(harwick, callan)
+railway.add_edge(callan, peel)
 
-# Call .add_edge() here
-railway.add_edge(station_one, station_two)
-print("Edges for {0}: {1}".format(station_one.value, station_one.get_edges()))
-print("Edges for {0}: {1}".format(station_two.value, station_two.get_edges()))
+# Uncomment the code below when you're done refactoring!
+
+peel_to_ulfstead_path_exists = railway.find_path('peel', 'ulfstead')
+harwick_to_peel_path_exists = railway.find_path('harwick', 'peel')
+
+print("A path exists between peel and ulfstead:")
+print(peel_to_ulfstead_path_exists)
+print("A path exists between harwick and peel:")
+print(harwick_to_peel_path_exists)
+
+railway.print_graph()
